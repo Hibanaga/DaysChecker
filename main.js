@@ -22,18 +22,19 @@ import users from './users.js';
 //     return userNames;
 // }
 
-// console.log((getUserNames(users)));
+// console.table((getUserNames(users)));
 
 
 //TASK2: Return users with different eye color
 //version: 1 filter()
-// const getUserWithEyeColor = (users,color)=> users.filter(({eyeColor}) => eyeColor === color)
+// const getUserWithEyeColor = (users,color) => users.filter(({eyeColor}) => eyeColor.toLowerCase() === color.toLowerCase());
 
 
 //version: 2 reduce()
 // const getUserWithEyeColor = (users,color)=> {
 //     return users.reduce((usersArr,user) => {
-//         if (user.eyeColor === color){
+//         let {eyeColor} = user;
+//         if (eyeColor.toLowerCase() === color.toLowerCase()){
 //             usersArr.push(user);  
 //         }
 //         return usersArr
@@ -44,7 +45,7 @@ import users from './users.js';
 // const getUserWithEyeColor = (users,color)=> {
 //    const usersWithEyeColor = [];
 //    users.forEach(user => {
-//         if (user.eyeColor === color) {
+//         if (user.eyeColor.toLowerCase() === color.toLowerCase()) {
 //             usersWithEyeColor.push(user)
 //         }
 //    });
@@ -57,12 +58,13 @@ import users from './users.js';
 //TASK 3: Retrun users with different gender
 
 //version 1: filter()
-// const getUsersWithGender= (users,findGender) => users.filter(({gender}) => gender === findGender);
+// const getUsersWithGender= (users,findGender) => users.filter(({gender}) => gender.toLowerCase() === findGender.toLowerCase());
 
 // version 2: reduce()
-// const getUsersWithGender = (users,gender) => {
+// const getUsersWithGender = (users,genderFind) => {
 //     return users.reduce((userArr,user) => {
-//         if (user.gender === gender) {
+//         let {gender} = user;
+//         if (gender.toLowerCase() === genderFind.toLowerCase()) {
 //             userArr.push(user);
 //         }
 //         return userArr;
@@ -73,7 +75,7 @@ import users from './users.js';
 // const getUsersWithGender = (users,gender) => {
 //     let userArr = [];
 //     users.forEach(user => {
-//         if (user.gender === gender) {
+//         if (user.gender.toLowerCase() === gender.toLowerCase()) {
 //             userArr.push(user);
 //         }
 //     });
@@ -93,7 +95,8 @@ import users from './users.js';
 //version 2: reduce()
 // const getInactiveUsers = users => {
 //     return users.reduce((userArr,user) => {
-//         if (!user.isActive) {
+//         let {isActive} = user;
+//         if (!isActive) {
 //             userArr.push(user);
 //         }
 //         return userArr
@@ -105,26 +108,24 @@ import users from './users.js';
 
 //TASK 5: find user from Email
 
-
 //version 1: reduce()
 // const getUserWithEmail = (users,findEmail)=> {
 //     return users.reduce((resultObj,user) => {
 //         let {email} = user
-//         if (email === findEmail) {
+//         if (email.toLowerCase() === findEmail.toLowerCase()) {
 //             resultObj = user
 //         }
 //         return resultObj;
-//     },"");
+//     },{});
 // };
 
 
 //version 2: filter();
 // const getUserWithEmail = (users,findEmail)=> {
-//     let resultArr =users.filter( ({email}) => email === findEmail)
-//     return resultArr[0];
+//     return users.filter( ({email}) => email.toLowerCase() === findEmail.toLowerCase())[0];
 // };
 
-// console.log(getUserWithEmail(users, 'elmahead@omatom.com'))
+// console.log(getUserWithEmail(users, 'elmahead@omatom.com'));
 
 //TASK 6: find array range ages
 
@@ -135,7 +136,8 @@ import users from './users.js';
 //version 2: reduce() 
 // const getUsersWithAge = (users,min,max) => {
 //     return users.reduce((filrtredArr,user) =>{
-//         if (user.age >= min && user.age <= max) {
+//         let {age} = user;
+//         if (age >= min && age <= max) {
 //             filrtredArr.push(user);
 //         }
 //         return filrtredArr;
@@ -187,44 +189,31 @@ import users from './users.js';
 //TASK 9: array of friend sorted by count friend
 
 
-//version 1: 
+//version 1:  sort() map()
 // const getNamesSortedByFriendsCount = users => {
-//     return users.sort((a,b) => sortfunc(a,b)).reverse().map(({name}) => name);
-
-//    //function of sorting
-//    function sortfunc(a,b) {
-//     let friendA = a.friends.length;
-//     let friendB = b.friends.length;
-//    let comprasion = 0;
-
-//    if (friendA > friendB) {
-//        comprasion =1;
-//    } else if (friendA < friendB) {
-//        comprasion = -1;
-//    } 
-//     return comprasion
-//    }
+//     return users.sort((a,b) => b.friends.length - a.friends.length).map(({name}) => name);
 // }
+
 
 // console.table(getNamesSortedByFriendsCount(users));
 
 
 //TASK 10: Find unique skills all users
-const getSortedUniqueSkills = users => {
-    let resultArr = [];
-    users.map(({skills}) => skills).forEach(skillsArr => {
-        for(let skill of skillsArr) {
-            if(!resultArr.includes(skill)) {
-                resultArr.push(skill);
-            }
-        }
-    });
-    return resultArr
-}
+// const getSortedUniqueSkills = users => {
+//     let resultArr = [];
+//     users.map(({skills}) => skills).forEach(skillsArr => {
+//         for(let skill of skillsArr) {
+//             if(!resultArr.includes(skill)) {
+//                 resultArr.push(skill);
+//             }
+//         }
+//     });
+//     return resultArr
+// }
 
 
 
-console.log(getSortedUniqueSkills(users));
+// console.log(getSortedUniqueSkills(users));
  
 
 
