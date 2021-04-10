@@ -199,21 +199,21 @@ import users from './users.js';
 
 
 //TASK 10: Find unique skills all users
-// const getSortedUniqueSkills = users => {
-//     let resultArr = [];
-//     users.map(({skills}) => skills).forEach(skillsArr => {
-//         for(let skill of skillsArr) {
-//             if(!resultArr.includes(skill)) {
-//                 resultArr.push(skill);
-//             }
-//         }
-//     });
-//     return resultArr
-// }
+const getSortedUniqueSkills = users => {
+    let resultArr = [];
+    users.map(({skills}) => skills).forEach(skillsArr => {
+        for(let skill of skillsArr) {
+            if(!resultArr.includes(skill)) {
+                resultArr.push(skill);
+            }
+        }
+    });
+    return resultArr.sort();
+}
 
 
 
-// console.log(getSortedUniqueSkills(users));
+console.log(getSortedUniqueSkills(users));
  
 
 
