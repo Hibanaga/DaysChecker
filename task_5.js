@@ -6,9 +6,8 @@ import users from './users.js';
 //TASK 5: find user from Email
 
 //version 1: filter();
-const getUserWithEmail = (users,findEmail)=> {
-    return users.filter( ({email}) => email.toLowerCase() === findEmail.toLowerCase())[0];
-};
+const getUserWithEmail = (users,findEmail)=> users.filter( ({email}) => email.toLowerCase() === findEmail.toLowerCase())[0];
+
 
 //version 2: reduce()
 // const getUserWithEmail = (users,findEmail)=> {
@@ -24,4 +23,4 @@ const getUserWithEmail = (users,findEmail)=> {
 
 
 
-console.log(getUserWithEmail(users, 'elmahead@omatom.com'));
+console.dir(getUserWithEmail(users, 'elmahead@omatom.com'));
