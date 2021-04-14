@@ -1,25 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
     <title>HW 6 SkillUp</title>
-</head>
-<body>
-    
+  </head>
+  <body>
+    <!-- task_1 -->
+    <ul id="categories">
+      <li class="item">
+        <h2>Животные</h2>
+        <ul>
+          <li>Кот</li>
+          <li>Хомяк</li>
+          <li>Лошадь</li>
+          <li>Попугай</li>
+        </ul>
+      </li>
+      <li class="item">
+        <h2>Продукты</h2>
+        <ul>
+          <li>Хлеб</li>
+          <li>Петрушка</li>
+          <li>Творог</li>
+        </ul>
+      </li>
+      <li class="item">
+        <h2>Технологии</h2>
+        <ul>
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>JavaScript</li>
+          <li>React</li>
+          <li>Node</li>
+        </ul>
+      </li>
+    </ul>
+    <!-- task_2 -->
+    <ul id="ingredients"></ul>
+    <!-- task_3 -->
+    <ul id="gallery"></ul>
+    <!-- task_4 -->
+    <div id="counter">
+      <button type="button" data-action="decrement">-1</button>
+      <span id="value">0</span>
+      <button type="button" data-action="increment">+1</button>
+    </div>
+    <!-- task_5 -->
+    <input type="text" placeholder="Ваше имя?" id="name-input" />
+    <h1>Привет, <span id="name-output">незнакомец</span>!</h1>
+    <!-- task_6 -->
+    <input
+      type="text"
+      id="validation-input"
+      data-length="6"
+      placeholder="Введи 6 символов"
+    />
 
-    <!-- <script src="./task_1.js" type="module"></script> -->
-    <!-- <script src="./task_2.js" type="module"></script> -->
-    <!-- <script src="./task_3.js" type="module"></script> -->
-    <!-- <script src="./task_4.js" type="module"></script> -->
+    <script src="./task_1.js" type="module"></script>
+    <script src="./task_2.js" type="module"></script>
+    <script src="./task_3.js" type="module"></script>
+    <script src="./task_4.js" type="module"></script>
     <script src="./task_5.js" type="module"></script>
-    <!-- <script src="./task_6.js" type="module"></script> -->
-    <!-- <script src="./task_7.js" type="module"></script> -->
-    <!-- <script src="./task_8.js" type="module"></script> -->
-    <!-- <script src="./task_9.js" type="module"></script>  -->
-    <!-- <script src="./task_10.js" type="module"></script> -->
-
-</body>
+    <script src="./task_6.js" type="module"></script>
+  </body>
 </html>

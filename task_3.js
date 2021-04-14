@@ -1,35 +1,44 @@
+const images = [
+  {
+    url:
+      "https://images.pexels.com/photos/140134/pexels-photo-140134.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+    alt: "White and Black Long Fur Cat",
+  },
+  {
+    url:
+      "https://images.pexels.com/photos/213399/pexels-photo-213399.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+    alt: "Orange and White Koi Fish Near Yellow Koi Fish",
+  },
+  {
+    url:
+      "https://images.pexels.com/photos/219943/pexels-photo-219943.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+    alt: "Group of Horses Running",
+  },
+];
 
-import users from './users.js';
+//Почему не работает с вариантом который сделан в другом варианте кода?
+images.map(({ url, alt }) => {
+  document
+    .querySelector("#gallery")
+    .insertAdjacentHTML(
+      "beforeend",
+      `<img class="img_gallery" src="${url}" alt="${alt}">`
+    );
+});
 
+//version 2:
+// images.map(({ url, alt }) => {
+//   let liImg = document.createElement("img");
+//   liImg.setAttribute("src", url);
+//   liImg.setAttribute("alt", alt);
+//   liImg.classList.add("img_gallery");
+//   console.log(liImg);
+// doesn't work with
+//   document.querySelector("#gallery").append(liImg);
 
-
-//TASK 3: Retrun users with different gender
-
-//version 1: filter()
-const getUsersWithGender= (users,findGender) => users.filter(({gender}) => gender.toLowerCase() === findGender.toLowerCase());
-
-// version 2: reduce()
-// const getUsersWithGender = (users,genderFind) => {
-//     return users.reduce((userArr,user) => {
-//         let {gender} = user;
-//         if (gender.toLowerCase() === genderFind.toLowerCase()) {
-//             userArr.push(user);
-//         }
-//         return userArr;
-//     },[])
-// }
-
-//version 3: forEach() 
-// const getUsersWithGender = (users,gender) => {
-//     let userArr = [];
-//     users.forEach(user => {
-//         if (user.gender.toLowerCase() === gender.toLowerCase()) {
-//             userArr.push(user);
-//         }
-//     });
-//     return userArr;
-// }
-
-console.table(getUsersWithGender(users,"male"));
-
-
+// DOESN'T WORK WITH THIS
+// /* .insertAdjacentHTML(
+//     "beforeend",
+//     liImg
+//   );*/
+// });

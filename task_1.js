@@ -1,25 +1,12 @@
+let ulArr = document.querySelectorAll("#categories")[0];
 
-import users from './users.js';
+console.log(`List exists of ${ulArr.children.length} categories`);
 
+let liItems = document.querySelectorAll(".item");
 
-// TASK 1: RETURN ARRAYS OF NAMES;
-// version 1: map()
-const getUserNames = users => users.map(({name}) => name)
-
-
-//version 2: reduce();
-// const getUserNames = users => {
-//     return users.reduce((namesArr,{name}) => {
-//         namesArr.push(name);
-//         return namesArr
-//     },[]);
-// }
-
-//version 3: forEach() 
-// const getUserNames = users => {
-//     let userNames = [];
-//     users.forEach(({name}) => userNames.push(name));
-//     return userNames;
-// }
-
-console.table((getUserNames(users)));
+liItems.forEach((item) => {
+  let [text, listItem] = item.children;
+  console.log(
+    `Категория ${text.innerText} имеет ${listItem.children.length} подкатегории`
+  );
+});

@@ -1,3 +1,36 @@
 body {
   background-color: #333;
 }
+
+html {
+  font-size: 10px;
+}
+
+#gallery {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img_gallery {
+  margin: 1rem;
+  width: 15rem;
+}
+
+#counter {
+  display: flex;
+  justify-content: center;
+}
+#value {
+  margin: 1rem;
+}
+
+#validation-input {
+  border: 3px solid #bdbdbd;
+}
+#validation-input.valid {
+  border-color: #4caf50;
+}
+#validation-input.invalid {
+  border-color: #f44336;
+}

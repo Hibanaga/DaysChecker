@@ -1,26 +1,11 @@
+//input text tag
+let inputName = document.querySelector("#name-input");
 
-import users from './users.js';
+//span output tag
+let NameOutput = document.querySelector("#name-output");
 
-
-
-//TASK 5: find user from Email
-
-//version 1: filter();
-const getUserWithEmail = (users,findEmail)=> users.filter( ({email}) => email.toLowerCase() === findEmail.toLowerCase())[0];
-
-
-//version 2: reduce()
-// const getUserWithEmail = (users,findEmail)=> {
-//     return users.reduce((resultObj,user) => {
-//         let {email} = user
-//         if (email.toLowerCase() === findEmail.toLowerCase()) {
-//             resultObj = user
-//         }
-//         return resultObj;
-//     },{});
-// };
-
-
-
-
-console.dir(getUserWithEmail(users, 'elmahead@omatom.com'));
+inputName.addEventListener("input", () => {
+  inputName.value === ""
+    ? (NameOutput.innerHTML = "незнакомец")
+    : (NameOutput.innerHTML = inputName.value);
+});
