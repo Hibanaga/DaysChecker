@@ -1,36 +1,63 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   background-color: #333;
 }
 
-html {
-  font-size: 10px;
+label {
+  display: block;
 }
 
-#gallery {
+.checkmark {
+  font-size: 30px;
+}
+
+.filter {
+  margin: 0 auto;
   display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-.img_gallery {
-  margin: 1rem;
-  width: 15rem;
+.radion_filter {
+  width: 450px;
+  height: 550px;
+  background-color: whitesmoke;
 }
 
-#counter {
+.label {
+  margin-top: 2rem;
+}
+
+.js-btn-sort {
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+  font-size: 2rem;
+}
+
+.container {
+  width: 900px;
+  margin: 0 auto;
   display: flex;
-  justify-content: center;
-}
-#value {
-  margin: 1rem;
+  flex-wrap: wrap;
 }
 
-#validation-input {
-  border: 3px solid #bdbdbd;
+.item_block {
+  margin: 1rem;
+  width: 250px;
+  height: 150px;
+  background-color: rgba(64, 224, 208, 0.438);
 }
-#validation-input.valid {
-  border-color: #4caf50;
+
+h2 {
+  text-align: center;
 }
-#validation-input.invalid {
-  border-color: #f44336;
+
+h3 {
+  text-align: center;
+}
+
+.countItem {
+  display: block;
+  text-align: center;
 }
