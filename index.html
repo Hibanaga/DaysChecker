@@ -4,43 +4,58 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./style.css" />
     <title>Document</title>
   </head>
   <body>
-    <div class="filter">
-      <div class="radion_filter">
-        <span class="checkmark"> filter settings </span>
-        <label for="" class="label">
-          <input type="radio" name="sortRadio" id="radioSort" value="toCheap" />
-          <span class="checkmark">sort by price (from expensive to cheap)</span>
-        </label>
+    <button class="js-btn-restart"></button>
 
-        <label for="" class="label">
+    <header>
+      <div class="headerTitle">
+        <h1 class="h1_mainTitle">Days Old</h1>
+        <span><img src="./images/birthday-cake.png" alt="" /></span>
+      </div>
+    </header>
+
+    <main>
+      <nav class="navForm">
+        <span class="navSpanQuestion">
+          First, in what <span class="spanStrong">year</span> were you born?
+        </span>
+        <div class="navSubmit">
           <input
-            type="radio"
-            name="sortRadio"
-            id="radioSort"
-            value="toExpensive"
+            type="number"
+            class="js-input-year"
+            placeholder="enter the year..."
+            autocomplete="off"
           />
-          <span class="checkmark">sort by price (from cheap to expensive)</span>
-        </label>
+          <button class="js-submit-year" disabled>Submit</button>
+        </div>
+      </nav>
 
-        <label for="" class="label">
-          <input type="radio" name="sortRadio" id="radioSort" value="byCount" />
-          <span class="checkmark">sort by count</span>
-        </label>
+      <div class="enterTheCurrentYear">
+        <span class="spanCurrentYear">
+          Or click a number to find out how many days old you'll be at different
+          ages (in years)!
+        </span>
 
-        <label for="" class="label">
-          <input type="radio" name="sortRadio" id="radioSort" value="byName" />
-          <span class="checkmark">sort by name</span>
-        </label>
-
-        <button class="js-btn-sort">add filter</button>
+        <div class="currentsYears"></div>
       </div>
 
-      <div class="container"></div>
-    </div>
+      <div class="enterTheCurrentDays">
+        <span class="spanCurrentYear spanCurrentDay">
+          Or click a number to find out how many years old you'll be at
+          different ages (in days)!
+        </span>
+
+        <div class="currentsDays"></div>
+      </div>
+    </main>
 
     <script src="./main.js" type="module"></script>
   </body>

@@ -4,60 +4,163 @@
 
 body {
   background-color: #333;
+  color: #fff;
 }
 
-label {
-  display: block;
+html {
+  font-family: "Roboto Mono", monospace;
+  font-size: 10px;
 }
 
-.checkmark {
-  font-size: 30px;
-}
-
-.filter {
+header {
+  width: 80%;
   margin: 0 auto;
+
   display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  height: 15vh;
+
+  border-bottom: 0.2rem solid rgb(121, 121, 121);
 }
 
-.radion_filter {
-  width: 450px;
-  height: 550px;
-  background-color: whitesmoke;
+.headerTitle {
+  display: flex;
+  align-items: center;
+
+  margin-left: 7rem;
 }
 
-.label {
+.h1_mainTitle {
+  font-size: 3.5rem;
+  margin-right: 1rem;
+}
+
+.spanStrong {
+  font-size: 3rem;
+  font-weight: 600;
+}
+
+.js-btn-restart {
+  display: block;
+  content: "";
+  width: 4rem;
+  height: 4rem;
+  padding: 1rem;
+  background-image: url(./images/update-arrow.png);
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+main {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.navForm {
+  margin-top: 4rem;
+  min-height: 15rem;
+  position: relative;
+}
+
+.navSpanQuestion {
+  font-size: 2.3rem;
+}
+
+.navSubmit {
+  margin-top: 1.5rem;
+
+  display: flex;
+  align-items: center;
+}
+
+.js-submit-year {
+  padding: 1.5rem 2.3rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+
+  border-radius: 10px;
+
+  outline: none;
+  color: rgb(187, 187, 187);
+  background-color: rgb(95, 95, 95);
+
+  cursor: pointer;
+}
+
+.js-input-year {
+  padding: 0.6rem 1.2rem;
+  font-size: 1.6rem;
+  margin-right: 2rem;
+}
+
+.js-submit-year::first-letter {
+  text-transform: uppercase;
+  /* disabled */
+}
+
+.enterTheCurrentYear {
+  border-top: 0.2rem solid rgb(121, 121, 121);
+}
+
+.spanCurrentYear {
+  display: block;
   margin-top: 2rem;
-}
-
-.js-btn-sort {
-  margin-top: 2rem;
-  padding: 1rem 2rem;
   font-size: 2rem;
+  margin-bottom: 1.5rem;
 }
 
-.container {
-  width: 900px;
-  margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
+.js-btn-year {
+  background-color: transparent;
+  margin: 0.2rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #bfbfbf;
 }
 
-.item_block {
-  margin: 1rem;
-  width: 250px;
-  height: 150px;
-  background-color: rgba(64, 224, 208, 0.438);
+.js-btn-year:hover {
+  text-decoration: underline;
 }
 
-h2 {
-  text-align: center;
+.enterTheCurrentDays {
+  border-top: 0.2rem solid rgb(121, 121, 121);
+  margin-top: 4rem;
 }
 
-h3 {
-  text-align: center;
+.js-input-year::-webkit-outer-spin-button,
+.js-input-year::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 
-.countItem {
+.js-montn-btn {
+  width: 70%;
   display: block;
-  text-align: center;
+  margin: 1rem auto;
+  padding: 1.5rem 0;
+}
+
+.navSpanMonths {
+  display: block;
+  margin-top: 2rem;
+}
+
+.monthBlocks {
+  margin: 3.5rem 0 3.5rem 0;
+}
+
+.spanWrongText {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 73%;
+}
+
+.spanWrongInput {
+  font-size: 2rem;
 }

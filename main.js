@@ -1,91 +1,106 @@
-let products = [
-  { id: 1, name: "macbook Pro", price: 2500, count: 3 },
-  { id: 2, name: "macbook Air", price: 1300, count: 10 },
-  { id: 3, name: "Lenovo Legion", price: 950, count: 4 },
-  { id: 4, name: "Acer Predator", price: 1500, count: 5 },
-  { id: 5, name: "Asus Zephyrus", price: 2000, count: 15 },
-  { id: 6, name: "Dell Inserption", price: 1050, count: 3 },
-  { id: 7, name: "Lenovo IdeaPad", price: 750, count: 1 },
-  { id: 8, name: "ASUS ROG", price: 1500, count: 24 },
-  { id: 9, name: "ACER PREDATOR", price: 1250, count: 4 },
+let yearInfo,
+  monthInfo,
+  dayInfo = "";
+
+let date = new Date();
+
+let months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
 ];
 
-let itemsContainer = document.querySelector(".container");
+let navYearInput = `
 
-let createHTML = (name, price, count) => `<div class="item_block">
-    <h2>${name}</h2>
-    <h3>price: ${price}</h3>
-    <span class="countItem">count: ${count}</span>
-    </div>`;
+<span class="navSpanQuestion">
+First, in what <span class="spanStrong">year</span> were you born?
+</span>
+<div class="navSubmit">
+<input
+  type="number"
+  class="js-input-year"
+  placeholder="enter the year..."
+  autocomplete="off"
+/>
+<button class="js-submit-year" disabled>Submit</button>
+</div>`;
 
-let mapProps = (products) =>
-  products.map(
-    ({ name, price, count }) =>
-      (itemsContainer.innerHTML += createHTML(name, price, count))
-  );
+for (let i = 0; i <= 100; i++) {
+  document.querySelector(
+    ".currentsYears"
+  ).innerHTML += `<button class="js-btn-year" value="${i}">${i}</button>`;
+}
 
-mapProps(products);
+for (let i = 1000; i <= 40000; i += 1000) {
+  document.querySelector(
+    ".currentsDays"
+  ).innerHTML += `<button class="js-btn-year js-btn-day" value="${i}">${i}</button>`;
+}
 
-let btnSort = document.querySelector(".js-btn-sort");
+let btn_selectYear = document.querySelector(".js-submit-year");
 
-btnSort.addEventListener("click", function (e) {
-  itemsContainer.innerHTML = "";
-  let value = document.querySelector("#radioSort:checked").value;
-  console.log(value);
-  if (value === "toCheap") {
-    sorting(products, "price");
-  }
+document
+  .querySelector(".js-input-year")
+  .addEventListener("mouseout", function (e) {
+    if (e.target.value === "") {
+      btn_selectYear.setAttribute("disabled", false);
+    } else {
+      btn_selectYear.removeAttribute("disabled");
+    }
+  });
 
-  if (value === "toExpensive") {
-    sortingByNamePriceExpensive(products, "price");
-  }
+btn_selectYear.addEventListener("click", function (e) {
+  yearInfo = document.querySelector(".js-input-year").value;
 
-  if (value === "byCount") {
-    sorting(products, "count");
-  }
+  if (yearInfo > 1900 && yearInfo < date.getFullYear()) {
+    let html = `<span class="navSpanQuestion navSpanMonths">
+    In what <span class="spanStrong">month</span> of ${yearInfo} were you born?
+  </span>`;
+    html += `<div class="monthBlocks"> `;
+    months.map((month) => {
+      html += `<button class="js-montn-btn" value=${month}>${month}</button>`;
+    });
 
-  if (value === "byName") {
-    sortingByNamePriceExpensive(products, "name");
+    html += `</div>`;
+
+    document.querySelector(".navForm").innerHTML = html;
+
+    monthRealizeLogic();
+
+    if (monthInfo !== "") {
+    }
+  } else {
+    // let html = `<span class="spanWrongText"><span class="spanWrongInput">Wrong Input </span> <img src="./images/sad.png" /> </span>`;
+    document.querySelector(
+      ".navForm"
+    ).innerHTML += `<span class="spanWrongText"><span class="spanWrongInput">Wrong Input </span> <img src="./images/sad.png" /> </span>`;
+    setTimeout(() => {
+      document.querySelector(".navForm").innerHTML = navYearInput;
+    }, 3000);
   }
 });
 
-function sorting(products, param) {
-  return products
-    .sort((a, b) => b[param] - a[param])
-    .map(
-      ({ name, price, count }) =>
-        (itemsContainer.innerHTML += createHTML(name, price, count))
-    );
-}
+document
+  .querySelector(".js-btn-restart")
+  .addEventListener("click", function (e) {
+    document.querySelector(".navForm").innerHTML = navYearInput;
+  });
 
-function sortingByNamePriceExpensive(products, param) {
-  console.log();
-  return products
-    .sort(function (a, b) {
-      if (a[param] < b[param]) {
-        return -1;
+function monthRealizeLogic() {
+  document
+    .querySelector(".monthBlocks")
+    .addEventListener("click", function (e) {
+      if (e.target.classList.contains("js-montn-btn")) {
+        monthInfo = e.target.value;
       }
-      if (a[param] > b[param]) {
-        return 1;
-      }
-      return 0;
-    })
-    .map(
-      ({ name, price, count }) =>
-        (itemsContainer.innerHTML += createHTML(name, price, count))
-    );
+    });
 }
-
-// function sortByCheap(products, callback) {
-//     return products
-//       .sort((a, b) => b.price - a.price)
-//       .map(
-//         ({ name, price, count }) =>
-
-//          version with callback doesn't work
-//           (itemsContainer.innerHTML += callback(name, price, count))
-//       );
-//   }
-// let { name, price, count } = products;
-// let val = sortByCheap(products, createHTML(name, price, count));
-// console.log(val);
