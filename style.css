@@ -12,6 +12,13 @@ html {
   font-size: 10px;
 }
 
+button {
+  outline: none;
+  cursor: pointer;
+
+  border: 2px solid rgb(0, 0, 0);
+}
+
 header {
   width: 80%;
   margin: 0 auto;
@@ -62,6 +69,7 @@ main {
   margin-top: 4rem;
   min-height: 15rem;
   position: relative;
+  margin-bottom: 4rem;
 }
 
 .navSpanQuestion {
@@ -143,6 +151,13 @@ main {
   display: block;
   margin: 1rem auto;
   padding: 1.5rem 0;
+  font-size: 3rem;
+  background-color: rgb(179, 71, 71);
+}
+
+.js-montn-btn:hover {
+  border: none;
+  padding: 1.7rem 0;
 }
 
 .navSpanMonths {
@@ -162,5 +177,61 @@ main {
 }
 
 .spanWrongInput {
+  font-size: 2rem;
+}
+
+.spanCurrentDateConvertDays {
+  font-size: 2.5rem;
+  width: 106%;
+  display: block;
+}
+
+.dayChecker {
+  font-size: 3rem;
+}
+
+.js-btn-next {
+  display: block;
+  margin: 0 auto;
+}
+
+.blockInfoDayDate {
+  margin: 2rem auto;
+  width: 80%;
+}
+
+.js-date-input {
+  display: block;
+  padding: 1rem;
+  font-size: 2.5rem;
+  margin: 2rem auto;
+}
+
+.js-btn-next {
+  width: 100%;
+  padding: 2rem;
+  margin: 2rem auto;
+  font-size: 4rem;
+}
+
+.spanComprassion {
+  display: block;
+  font-size: 2rem;
+  width: 60%;
+  margin-left: 1.5rem;
+  margin-top: 3rem;
+}
+
+.spanAnimalsYears {
+  display: block;
+
+  margin-left: 2rem;
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.yearsAnimal {
+  margin-left: 4rem;
   font-size: 2rem;
 }
