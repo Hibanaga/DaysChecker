@@ -19,15 +19,25 @@ let months = [
   "December",
 ];
 
-document
-  .querySelector(".js-btn-restart")
-  .addEventListener("click", function (e) {
-    document.querySelector(".navForm").innerHTML = navYearInput;
-    location.reload();
-  });
+checkerInputYear();
+
+//append count of year for later convert to days
+createYearCounter();
+
+//append count of days for later convert to years
+createDaysCounter();
+btnRestart();
+
+function btnRestart() {
+  document
+    .querySelector(".js-btn-restart")
+    .addEventListener("click", function (e) {
+      document.querySelector(".navForm").innerHTML = navYearInput;
+      location.reload();
+    });
+}
 
 let navYearInput = `
-
 <span class="navSpanQuestion">
 First, in what <span class="spanStrong">year</span> were you born?
 </span>
@@ -41,31 +51,37 @@ First, in what <span class="spanStrong">year</span> were you born?
 <button class="js-submit-year">Submit</button>
 </div>`;
 
-for (let i = 1; i <= 100; i++) {
-  document.querySelector(
-    ".currentsYears"
-  ).innerHTML += `<button class="js-btn-year" value="${i}">${i}</button>`;
+function createYearCounter() {
+  for (let i = 1; i <= 100; i++) {
+    document.querySelector(
+      ".currentsYears"
+    ).innerHTML += `<button class="js-btn-year" value="${i}">${i}</button>`;
+  }
 }
 
-for (let i = 1000; i <= 40000; i += 1000) {
-  document.querySelector(
-    ".currentsDays"
-  ).innerHTML += `<button class="js-btn-year js-btn-day" value="${i}">${i}</button>`;
+function createDaysCounter() {
+  for (let i = 1000; i <= 40000; i += 1000) {
+    document.querySelector(
+      ".currentsDays"
+    ).innerHTML += `<button class="js-btn-year js-btn-day" value="${i}">${i}</button>`;
+  }
 }
 
 let btn_selectYear = document.querySelector(".js-submit-year");
 
-document
-  .querySelector(".js-input-year")
-  .addEventListener("mouseout", function (e) {
-    if (e.target.value === "") {
-      btn_selectYear.setAttribute("disabled", false);
-    } else {
-      btn_selectYear.removeAttribute("disabled");
-    }
-  });
+function checkerInputYear() {
+  document
+    .querySelector(".js-input-year")
+    .addEventListener("input", function (e) {
+      if (e.target.value !== "") {
+        btn_selectYear.addEventListener("click", (e) => {
+          createMonthRealize();
+        });
+      }
+    });
+}
 
-btn_selectYear.addEventListener("click", function (e) {
+function createMonthRealize() {
   yearInfo = document.querySelector(".js-input-year").value;
 
   if (yearInfo > 1900 && yearInfo < date.getFullYear()) {
@@ -91,7 +107,7 @@ btn_selectYear.addEventListener("click", function (e) {
       document.querySelector(".navForm").innerHTML = navYearInput;
     }, 3000);
   }
-});
+}
 
 function monthRealizeLogic() {
   document
