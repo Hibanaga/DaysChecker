@@ -14,47 +14,53 @@
     <title>Document</title>
   </head>
   <body>
-    <button class="js-btn-restart"></button>
+    <div class="container">
+      <button class="js-btn-restart"></button>
+    </div>
 
     <header>
-      <div class="headerTitle">
-        <h1 class="h1_mainTitle">Days Old</h1>
-        <span><img src="./images/birthday-cake.png" alt="" /></span>
+      <div class="container">
+        <div class="headerTitle">
+          <h1 class="h1_mainTitle">Days Old</h1>
+          <span><img src="./images/birthday-cake.png" alt="" /></span>
+        </div>
       </div>
     </header>
 
     <main>
-      <nav class="navForm">
-        <span class="navSpanQuestion">
-          First, in what <span class="spanStrong">year</span> were you born?
-        </span>
-        <div class="navSubmit">
-          <input
-            type="number"
-            class="js-input-year"
-            placeholder="enter the year..."
-            autocomplete="off"
-          />
-          <button class="js-submit-year">Submit</button>
+      <div class="container">
+        <nav class="navForm">
+          <span class="navSpanQuestion">
+            First, in what <span class="spanStrong">year</span> were you born?
+          </span>
+          <div class="navSubmit">
+            <input
+              type="number"
+              class="js-input-year"
+              placeholder="enter the year..."
+              autocomplete="off"
+            />
+            <button class="js-submit-year"></button>
+          </div>
+        </nav>
+
+        <div class="enterTheCurrentYear">
+          <span class="spanCurrentYear">
+            Or click a number to find out how many days old you'll be at
+            different ages (in years)!
+          </span>
+
+          <div class="currentsYears"></div>
         </div>
-      </nav>
 
-      <div class="enterTheCurrentYear">
-        <span class="spanCurrentYear">
-          Or click a number to find out how many days old you'll be at different
-          ages (in years)!
-        </span>
+        <div class="enterTheCurrentDays">
+          <span class="spanCurrentYear spanCurrentDay">
+            Or click a number to find out how many years old you'll be at
+            different ages (in days)!
+          </span>
 
-        <div class="currentsYears"></div>
-      </div>
-
-      <div class="enterTheCurrentDays">
-        <span class="spanCurrentYear spanCurrentDay">
-          Or click a number to find out how many years old you'll be at
-          different ages (in days)!
-        </span>
-
-        <div class="currentsDays"></div>
+          <div class="currentsDays"></div>
+        </div>
       </div>
     </main>
 

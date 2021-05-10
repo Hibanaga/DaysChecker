@@ -3,8 +3,8 @@
 }
 
 body {
-  background-color: #333;
-  color: #fff;
+  background-color: #086064;
+  color: #f9cf59;
 }
 
 html {
@@ -12,226 +12,236 @@ html {
   font-size: 10px;
 }
 
-button {
-  outline: none;
-  cursor: pointer;
-
-  border: 2px solid rgb(0, 0, 0);
-}
-
-header {
-  width: 80%;
-  margin: 0 auto;
-
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-end;
-  height: 15vh;
-
-  border-bottom: 0.2rem solid rgb(121, 121, 121);
-}
+/*title info*/
 
 .headerTitle {
   display: flex;
   align-items: center;
-
-  margin-left: 7rem;
 }
 
-.h1_mainTitle {
-  font-size: 3.5rem;
-  margin-right: 1rem;
-}
-
-.spanStrong {
-  font-size: 3rem;
-  font-weight: 600;
-}
-
-.js-btn-restart {
-  display: block;
-  content: "";
-  width: 4rem;
-  height: 4rem;
-  padding: 1rem;
-  background-image: url(./images/update-arrow.png);
-  background-size: 80%;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-main {
-  width: 80%;
+.container {
+  width: 114rem;
   margin: 0 auto;
 }
 
-.navForm {
-  margin-top: 4rem;
-  min-height: 15rem;
-  position: relative;
-  margin-bottom: 4rem;
-}
+.js-btn-restart {
+  margin-left: 2rem;
+  margin-top: 3rem;
+  background-image: url(./images/update-arrow.png);
+  background-size: 45%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #49bfb7;
 
-.navSpanQuestion {
-  font-size: 2.3rem;
-}
+  width: 10rem;
+  height: 5rem;
 
-.navSubmit {
-  margin-top: 1.5rem;
-
-  display: flex;
-  align-items: center;
-}
-
-.js-submit-year {
-  padding: 1.5rem 2.3rem;
-  font-size: 1.5rem;
-  font-weight: 600;
-
-  border-radius: 10px;
+  font-size: 2rem;
 
   outline: none;
-  color: rgb(187, 187, 187);
-  background-color: rgb(95, 95, 95);
-
   cursor: pointer;
+  border: none;
+
+  /* border: 6px solid #f9cf59; */
+  border-radius: 4px;
+
+  transition: 0.2s all ease;
 }
 
-.js-input-year {
-  padding: 0.6rem 1.2rem;
-  font-size: 1.6rem;
-  margin-right: 2rem;
+.js-btn-restart:hover {
+  -webkit-box-shadow: 8px 22px 28px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 8px 22px 28px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 8px 22px 28px 0px rgba(0, 0, 0, 0.75);
 }
 
-.js-submit-year::first-letter {
-  text-transform: uppercase;
-  /* disabled */
+.h1_mainTitle {
+  font-size: 4rem;
 }
 
-.enterTheCurrentYear {
-  border-top: 0.2rem solid rgb(121, 121, 121);
+header {
+  margin-top: 4rem;
 }
 
 .spanCurrentYear {
   display: block;
-  margin-top: 2rem;
+  width: 70%;
   font-size: 2rem;
-  margin-bottom: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
-.js-btn-year {
+.currentsYears {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.countYearBtn {
+  margin: 0.5rem;
+  font-size: 1.9rem;
+  color: #f9cf59;
+
   background-color: transparent;
-  margin: 0.2rem;
   border: none;
-  outline: none;
   cursor: pointer;
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #bfbfbf;
 }
 
-.js-btn-year:hover {
+.countYearBtn:hover {
   text-decoration: underline;
 }
 
-.enterTheCurrentDays {
-  border-top: 0.2rem solid rgb(121, 121, 121);
-  margin-top: 4rem;
+.navSpanQuestion {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.spanStrong {
+  font-weight: 600;
+}
+
+.js-input-year {
+  font-size: 2rem;
+  padding: 1.5rem 1rem;
+  background-color: #f9cf59;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.navSubmit {
+  margin-top: 2rem;
+  background-color: #f9cf59;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 30%;
+  position: relative;
+  cursor: pointer;
+}
+
+.js-input-year {
+  -moz-appearance: textfield;
+  color: #086064;
 }
 
 .js-input-year::-webkit-outer-spin-button,
 .js-input-year::-webkit-inner-spin-button {
-  /* display: none; <- Crashes Chrome on hover */
   -webkit-appearance: none;
-  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 
-.js-montn-btn {
-  width: 70%;
-  display: block;
-  margin: 1rem auto;
-  padding: 1.5rem 0;
-  font-size: 3rem;
-  background-color: rgb(179, 71, 71);
+.js-input-year::placeholder {
+  color: #086064;
 }
 
-.js-montn-btn:hover {
+.js-submit-year {
+  background-image: url(./images/calendar.png);
+  background-repeat: no-repeat;
+  justify-content: center;
+  /* margin-top: 0.5rem; */
+  background-size: 100%;
+  background-color: #f9cf59;
+
+  width: 5rem;
+  height: 5rem;
+
   border: none;
-  padding: 1.7rem 0;
+  cursor: pointer;
 }
 
-.navSpanMonths {
-  display: block;
-  margin-top: 2rem;
-}
-
-.monthBlocks {
-  margin: 3.5rem 0 3.5rem 0;
-}
-
-.spanWrongText {
-  display: flex;
-  align-items: center;
-  position: absolute;
-  top: 73%;
-}
-
-.spanWrongInput {
-  font-size: 2rem;
+.infoYearDaysConvert {
+  font-size: 3rem;
+  margin-bottom: 4rem;
 }
 
 .spanCurrentDateConvertDays {
-  font-size: 2.5rem;
-  width: 106%;
-  display: block;
+  font-size: 2.7rem;
 }
 
-.dayChecker {
+.spanStrongInfo {
+  font-size: 3rem;
+  color: #49bfb7;
+}
+
+.selectMonthBlock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 5rem;
+}
+
+.js-btn-selectMonth {
+  display: block;
+  width: 60%;
+  padding: 1.5rem;
+  margin: 3rem;
+
   font-size: 3rem;
 }
 
-.js-btn-next {
-  display: block;
-  margin: 0 auto;
+:root {
+  --backgroundColor: rgba(246, 241, 209);
+  --colorShadeA: rgb(106, 163, 137);
+  --colorShadeB: rgb(121, 186, 156);
+  --colorShadeC: rgb(150, 232, 195);
+  --colorShadeD: rgb(187, 232, 211);
+  --colorShadeE: rgb(205, 255, 232);
 }
 
-.blockInfoDayDate {
-  margin: 2rem auto;
-  width: 80%;
+button {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  vertical-align: middle;
+  text-decoration: none;
+  font-size: 1.5rem;
+  color: var(--colorShadeA);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-family: inherit;
 }
 
-.js-date-input {
-  display: block;
-  padding: 1rem;
-  font-size: 2.5rem;
-  margin: 2rem auto;
+button.js-btn-selectMonth {
+  padding: 1em 2em;
+  border: 2px solid var(--colorShadeA);
+  border-radius: 1em;
+  background: var(--colorShadeE);
+  transform-style: preserve-3d;
+  transition: all 175ms cubic-bezier(0, 0, 1, 1);
 }
-
-.js-btn-next {
+button.js-btn-selectMonth::before {
+  position: absolute;
+  content: "";
   width: 100%;
-  padding: 2rem;
-  margin: 2rem auto;
-  font-size: 4rem;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--colorShadeC);
+  border-radius: inherit;
+  box-shadow: 0 0 0 2px var(--colorShadeB), 0 0.75em 0 0 var(--colorShadeA);
+  transform: translate3d(0, 0.75em, -1em);
+  transition: all 175ms cubic-bezier(0, 0, 1, 1);
 }
 
-.spanComprassion {
-  display: block;
-  font-size: 2rem;
-  width: 60%;
-  margin-left: 1.5rem;
-  margin-top: 3rem;
+button.js-btn-selectMonth:hover {
+  background: var(--colorShadeD);
+  transform: translate(0, 0.375em);
 }
 
-.spanAnimalsYears {
-  display: block;
-
-  margin-left: 2rem;
-  margin-top: 2rem;
-  display: flex;
-  align-items: center;
+button.js-btn-selectMonth:hover::before {
+  transform: translate3d(0, 0.75em, -1em);
 }
 
-.yearsAnimal {
-  margin-left: 4rem;
-  font-size: 2rem;
+button.js-btn-selectMonth:active {
+  transform: translate(0em, 0.75em);
+}
+
+button.js-btn-selectMonth:active::before {
+  transform: translate3d(0, 0, -1em);
+
+  box-shadow: 0 0 0 2px var(--colorShadeB), 0 0.25em 0 0 var(--colorShadeB);
 }

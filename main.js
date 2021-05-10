@@ -1,231 +1,220 @@
-let yearInfo,
-  monthInfo,
-  dayInfo = "";
+import dateInfo from "./dateInfo.js";
 
 let date = new Date();
 
-let months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
+let day, month, year;
 
-checkerInputYear();
-
-//append count of year for later convert to days
-createYearCounter();
-
-//append count of days for later convert to years
+const refs = {
+  countCurrentYears: document.querySelector(".currentsYears"),
+  countCurrentDays: document.querySelector(".currentsDays"),
+  btnRestart: document.querySelector(".js-btn-restart"),
+  allInfoNav: document.querySelector(".navForm"),
+};
+//counterInfo
 createDaysCounter();
-btnRestart();
 
-function btnRestart() {
-  document
-    .querySelector(".js-btn-restart")
-    .addEventListener("click", function (e) {
-      document.querySelector(".navForm").innerHTML = navYearInput;
-      location.reload();
-    });
-}
+createYearsCounter();
+restartAllHTML();
 
-let navYearInput = `
-<span class="navSpanQuestion">
-First, in what <span class="spanStrong">year</span> were you born?
-</span>
-<div class="navSubmit">
-<input
-  type="number"
-  class="js-input-year"
-  placeholder="enter the year..."
-  autocomplete="off"
-/>
-<button class="js-submit-year">Submit</button>
-</div>`;
-
-function createYearCounter() {
-  for (let i = 1; i <= 100; i++) {
-    document.querySelector(
-      ".currentsYears"
-    ).innerHTML += `<button class="js-btn-year" value="${i}">${i}</button>`;
-  }
-}
+selectYearUser();
 
 function createDaysCounter() {
-  for (let i = 1000; i <= 40000; i += 1000) {
-    document.querySelector(
-      ".currentsDays"
-    ).innerHTML += `<button class="js-btn-year js-btn-day" value="${i}">${i}</button>`;
-  }
-}
+  for (let i = 1; i <= 100; i++) {
+    let itemBtn = document.createElement("button");
+    itemBtn.classList.add("countYearBtn");
+    itemBtn.innerText = i;
 
-let btn_selectYear = document.querySelector(".js-submit-year");
-
-function checkerInputYear() {
-  document
-    .querySelector(".js-input-year")
-    .addEventListener("input", function (e) {
-      if (e.target.value !== "") {
-        btn_selectYear.addEventListener("click", (e) => {
-          createMonthRealize();
-        });
-      }
-    });
-}
-
-function createMonthRealize() {
-  yearInfo = document.querySelector(".js-input-year").value;
-
-  if (yearInfo > 1900 && yearInfo < date.getFullYear()) {
-    let html = `<span class="navSpanQuestion navSpanMonths">
-    In what <span class="spanStrong">month</span> of ${yearInfo} were you born?
-  </span>`;
-    html += `<div class="monthBlocks"> `;
-    months.map((month) => {
-      html += `<button class="js-montn-btn" value=${month}>${month}</button>`;
-    });
-
-    html += `</div>`;
-
-    document.querySelector(".navForm").innerHTML = html;
-
-    monthRealizeLogic();
-  } else {
-    // let html = `<span class="spanWrongText"><span class="spanWrongInput">Wrong Input </span> <img src="./images/sad.png" /> </span>`;
-    document.querySelector(
-      ".navForm"
-    ).innerHTML += `<span class="spanWrongText"><span class="spanWrongInput">Wrong Input </span> <img src="./images/sad.png" /> </span>`;
-    setTimeout(() => {
-      document.querySelector(".navForm").innerHTML = navYearInput;
-    }, 3000);
-  }
-}
-
-function monthRealizeLogic() {
-  document
-    .querySelector(".monthBlocks")
-    .addEventListener("click", function (e) {
-      if (e.target.classList.contains("js-montn-btn")) {
-        // console.log(e.target.value);
-        monthInfo = e.target.value;
-        createDayChecker();
-      }
-    });
-}
-
-function createDayChecker() {
-  let monthNumber = months.indexOf(monthInfo) + 1;
-  let dateValue = "";
-  if (monthNumber < 10) {
-    dateValue = `${yearInfo}-${"0" + monthNumber}-01`;
-  } else {
-    dateValue = `${yearInfo}-${monthNumber}-01`;
-  }
-  let html = `<span class="dayChecker"> On what <span class="spanStrong"> day </span> in ${monthInfo} of ${yearInfo}`;
-  html += ` were you born?`;
-  html += `</span>`;
-  html += `<div class="blockInfoDayDate"> `;
-  html += `<input type="date" name="calendar" class="js-date-input" value="${dateValue}"> `;
-  html += `<button class="js-btn-next"> Next </button>`;
-  html += `</div>`;
-
-  document.querySelector(".navForm").innerHTML = html;
-
-  document
-    .querySelector(".js-btn-next")
-    .addEventListener("click", function (e) {
-      let dateValue = document.querySelector(".js-date-input").value;
-      let infoDate = dateValue.split("-");
-      let [year, month, day] = infoDate;
-
-      let date1 = new Date(year, month, day);
-      let date2 = new Date(
-        date.getFullYear(),
-        date.getMonth() + 1,
-        date.getDate()
-      );
-
-      createFullDateInfo(diffDates(date2, date1));
-    });
-}
-
-function createFullDateInfo(finalDate) {
-  let finalYear = Math.floor(Math.floor(finalDate) / 365);
-  let html = `<span class="spanFullDate spanStrong"> `;
-  html += `You are `;
-  html += `${Math.floor(finalDate)}`;
-  html += ` days old! and it's year is ${finalYear} year!`;
-  html += "</span>";
-  html += lifeComparison(Math.floor(finalDate));
-
-  document.querySelector(".navForm").innerHTML = html;
-}
-
-document.querySelector(".currentsDays").addEventListener("click", function (e) {
-  let daysConvertToYear = 0;
-  if (e.target.classList.contains("js-btn-day")) {
-    daysConvertToYear = e.target.value;
+    refs.countCurrentYears.append(itemBtn);
   }
 
-  let fullInfoDate = calculateTime(daysConvertToYear);
-  let { years, months, weeks, days } = fullInfoDate;
+  selectYearConvert();
+}
 
-  let html = `<span class="spanCurrentDateConvertDays"> In <span class="spanStrong"> ${daysConvertToYear} </span>`;
-  html += `days old, you'll be`;
-  html += `<span class="spanStrong"> ${years} years, ${months} months,and ${
-    weeks * 7 + days
-  } days </span>`;
-  html += `</span>`;
+function createYearsCounter() {
+  for (let i = 100; i < 4500; i += 100) {
+    let itemBtn = document.createElement("button");
+    itemBtn.classList.add("countYearBtn");
+    itemBtn.classList.add("countDaysBtn");
+    itemBtn.innerText = i;
 
-  document.querySelector(".navForm").innerHTML = html;
-});
+    refs.countCurrentDays.append(itemBtn);
+  }
 
-document
-  .querySelector(".currentsYears")
-  .addEventListener("click", function (e) {
-    let yearConvertToDays = 0;
-    if (e.target.classList.contains("js-btn-year")) {
-      yearConvertToDays = e.target.value;
+  selectDaysConvert();
+}
+
+function selectYearConvert() {
+  refs.countCurrentYears.addEventListener("click", (event) => {
+    if (event.target.nodeName !== "BUTTON") {
+      return;
     }
-    let days = calculateTimeYear(yearConvertToDays);
-    let html = `<span class="spanCurrentDateConvertDays"> At <span class="spanStrong"> ${yearConvertToDays} years old, </span>`;
-    html += `you'll be <span class="spanStrong"> ${days} </span> days old!`;
-    html += `</span>`;
 
-    document.querySelector(".navForm").innerHTML = html;
+    let yearCount = event.target.innerText;
+    let createBlockYearInfo = document.createElement("h2");
+    createBlockYearInfo.classList.add("infoYearDaysConvert");
+
+    let counterInfo = document.createElement("span");
+    counterInfo.classList.add("spanYearStrong");
+    counterInfo.innerText = ` ${yearCount} `;
+
+    createBlockYearInfo.innerHTML = `At`;
+    createBlockYearInfo.append(counterInfo);
+    createBlockYearInfo.innerHTML += `years old, you'll be`;
+
+    let counterInfoDays = document.createElement("span");
+    counterInfoDays.classList.add("spanDaysStrong");
+    counterInfoDays.innerText = ` ${calculateTimeYear(yearCount)} `;
+    createBlockYearInfo.append(counterInfoDays);
+
+    createBlockYearInfo.innerHTML += `days old!`;
+
+    refs.allInfoNav.innerHTML = ``;
+    refs.allInfoNav.append(createBlockYearInfo);
+  });
+}
+
+function selectDaysConvert() {
+  refs.countCurrentDays.addEventListener("click", (event) => {
+    // console.log(event.target.nodeName);
+
+    if (event.target.nodeName !== "BUTTON") {
+      return;
+    }
+
+    // console.log(event.target.innerText);
+
+    let daysCount = event.target.innerText;
+
+    let spanMainInfo = document.createElement("span");
+    spanMainInfo.classList.add("spanCurrentDateConvertDays");
+    spanMainInfo.innerHTML = `In`;
+
+    let strongSpanInfo = document.createElement("span");
+    strongSpanInfo.classList.add("spanStrongInfo");
+    strongSpanInfo.innerHTML = ` ${daysCount} `;
+    spanMainInfo.append(strongSpanInfo);
+
+    spanMainInfo.innerHTML += `days old, you'll be`;
+
+    let spanDateInfoStrong = document.createElement("span");
+    spanDateInfoStrong.classList.add("spanStrongInfo");
+
+    let { years, months, weeks, days } = calculateTime(daysCount);
+
+    spanDateInfoStrong.innerHTML += ` ${years} years, `;
+    spanDateInfoStrong.innerHTML += ` ${months} months, `;
+    spanDateInfoStrong.innerHTML += ` ${weeks} weeks, `;
+    spanDateInfoStrong.innerHTML += ` ${days} days, `;
+
+    spanMainInfo.append(spanDateInfoStrong);
+
+    refs.allInfoNav.innerHTML = ``;
+    refs.allInfoNav.append(spanMainInfo);
+  });
+}
+
+function restartAllHTML() {
+  refs.btnRestart.addEventListener("click", (event) => {
+    let spanTitleQuestion = document.createElement("span");
+    spanTitleQuestion.classList.add("navSpanQuestion");
+    spanTitleQuestion.innerHTML += `First, in what`;
+    spanTitleQuestion.innerHTML += `<span class="spanStrong"> year </span>`;
+    spanTitleQuestion.innerHTML += `were you born?`;
+
+    let navDivSubmit = document.createElement("div");
+    navDivSubmit.classList.add("navSubmit");
+
+    let inputSearch = document.createElement("input");
+    inputSearch.type = "number";
+    inputSearch.classList.add("js-input-year");
+    inputSearch.placeholder = `enter the year...`;
+    inputSearch.autocomplete = "off";
+    navDivSubmit.append(inputSearch);
+
+    let btnSearch = document.createElement("button");
+    btnSearch.classList.add("js-submit-year");
+    navDivSubmit.append(btnSearch);
+
+    refs.allInfoNav.innerHTML = ``;
+    refs.allInfoNav.append(spanTitleQuestion);
+    refs.allInfoNav.append(navDivSubmit);
+
+    selectYearUser();
+  });
+}
+
+console.log(dateInfo);
+// console.log(date. );
+
+function selectYearUser() {
+  document
+    .querySelector(".js-submit-year")
+    .addEventListener("click", (event) => {
+      let inputDate = document.querySelector(".js-input-year").value;
+      year = inputDate;
+      // console.log(inputDate);
+      // console.log(day);
+      createMonthsBlocks();
+    });
+}
+
+function createMonthsBlocks() {
+  const { months } = dateInfo;
+  refs.allInfoNav.innerHTML = ``;
+  // refs.allInfoNav.append(btnMonthBlock);
+
+  let blockBtnsInfo = document.createElement("div");
+  blockBtnsInfo.classList.add("selectMonthBlock");
+
+  let titleInfoSpan = document.createElement("span");
+  titleInfoSpan.classList.add("spanInfoMothSelect");
+  titleInfoSpan.innerHTML = `In what month of ${year} were you born?`;
+  // titleInfoSpan += `of ${year} were you born?`;
+
+  blockBtnsInfo.append(titleInfoSpan);
+
+  months.forEach((month) => {
+    let btnMonthBlock = document.createElement("button");
+    btnMonthBlock.classList.add("js-btn-selectMonth");
+    btnMonthBlock.classList.add("btnSelectMonth");
+    btnMonthBlock.innerText = month;
+
+    blockBtnsInfo.append(btnMonthBlock);
   });
 
-function lifeComparison(daysLife) {
-  let yearInfo = daysLife / 365;
+  refs.allInfoNav.append(blockBtnsInfo);
 
-  let html = `<span class="spanComprassion"> If you are interested here is a comparison in life expectancy with animals </span>`;
-  html += `<span class="spanAnimalsYears"><img src="./images/cat.png" class="imgAnimal" /> <span class="yearsAnimal"> ${(
-    yearInfo * 0.313
-  ).toFixed(2)} year </span>  </span>`;
-  html += `<span class="spanAnimalsYears"><img src="./images/hippopotamus.png" class="imgAnimal" /> <span class="yearsAnimal">${(
-    yearInfo * 0.562
-  ).toFixed(2)} year  </span>  </span>`;
-  html += `<span class="spanAnimalsYears"><img src="./images/rat.png" class="imgAnimal" /> <span class="yearsAnimal">${(
-    yearInfo * 0.05
-  ).toFixed(2)} year  </span>  </span>`;
-  html += `<span class="spanAnimalsYears"><img src="./images/shiba.png" class="imgAnimal" /> <span class="yearsAnimal">${(
-    yearInfo * 0.275
-  ).toFixed(2)} year </span>  </span>`;
-  html += `<span class="spanAnimalsYears"><img src="./images/monkey.png" class="imgAnimal" /> <span class="yearsAnimal">${(
-    yearInfo * 0.313
-  ).toFixed(2)} year </span>  </span>`;
-
-  return html;
+  selectMonthBtns();
 }
 
+function selectMonthBtns() {
+  document
+    .querySelector(".selectMonthBlock")
+    .addEventListener("click", (event) => {
+      // console.log(event.target.nodeName);
+      const { months } = dateInfo;
+
+      if (event.target.nodeName !== "BUTTON") {
+        return;
+      }
+
+      let eventTarget = event.target.innerText.toLowerCase().split("");
+      let firstLetter = eventTarget.shift().toUpperCase();
+
+      let validationMonth = firstLetter + eventTarget.join("");
+      console.log(validationMonth);
+      month = months.indexOf(validationMonth) + 1;
+
+      console.log(month);
+      // console.log(firstLetter);
+    });
+}
+
+// function selectDay() {
+
+// }
+
+/*Calculate Functions*/
 function calculateTime(dateInDays) {
   let months = 0;
   let years = 0;
