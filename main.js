@@ -285,10 +285,6 @@ function selectDayBtn() {
 
       let diffDays = Math.ceil(diffDates(currentInfoDate, userInfoDate));
 
-      console.log(diffDays);
-
-      console.log(calculateTime(diffDays));
-
       let { years, months, weeks, days } = calculateTime(diffDays);
 
       let finalInfoData = document.createElement("h2");
