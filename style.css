@@ -245,3 +245,67 @@ button.js-btn-selectMonth:active::before {
 
   box-shadow: 0 0 0 2px var(--colorShadeB), 0 0.25em 0 0 var(--colorShadeB);
 }
+
+.spanInfoMothSelect {
+  font-size: 3.5rem;
+}
+
+.infoDateFinished {
+  text-align: center;
+  font-size: 2.5rem;
+}
+
+.spanStrong {
+  font-size: 3rem;
+  font-weight: 800;
+}
+
+.js-date-SelectDay {
+  display: block;
+  margin: 0 auto;
+
+  font-size: 3rem;
+  padding: 1rem 1.5rem;
+
+  background-color: #49bfb7;
+  color: #f9cf59;
+
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 4px;
+
+  transition: 0.3s all ease;
+
+  margin-top: 6rem;
+  margin-bottom: 6rem;
+}
+
+.js-date-SelectDay:hover {
+  color: #086064;
+}
+
+.js-btn-selectDay {
+  display: block;
+  margin: 0 auto;
+  padding: 1.5rem 3rem;
+  border-radius: 4px;
+  font-size: 3rem;
+
+  transition: 0.3s all ease;
+}
+
+.js-btn-selectDay:hover {
+  background-color: #49bfb7;
+  color: #f9cf59;
+}
+
+.titleInfoFullDate {
+  font-size: 2.8rem;
+  margin-top: 4rem;
+  margin-bottom: 8rem;
+}
+
+.spanStrong {
+  color: #49bfb7;
+}

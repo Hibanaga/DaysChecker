@@ -2,7 +2,13 @@ import dateInfo from "./dateInfo.js";
 
 let date = new Date();
 
-let day, month, year;
+let month, year;
+
+// console.log(date);
+
+// console.log(date.getFullYear());
+// console.log(date.getMonth());
+// console.log(date.getUTCDate());
 
 const refs = {
   countCurrentYears: document.querySelector(".currentsYears"),
@@ -143,7 +149,7 @@ function restartAllHTML() {
   });
 }
 
-console.log(dateInfo);
+// console.log(dateInfo);
 // console.log(date. );
 
 function selectYearUser() {
@@ -168,7 +174,22 @@ function createMonthsBlocks() {
 
   let titleInfoSpan = document.createElement("span");
   titleInfoSpan.classList.add("spanInfoMothSelect");
-  titleInfoSpan.innerHTML = `In what month of ${year} were you born?`;
+  titleInfoSpan.innerHTML += `In what `;
+
+  let spanInfo = document.createElement("span");
+  spanInfo.classList.add("spanStrong");
+  spanInfo.innerHTML += `month `;
+
+  titleInfoSpan.append(spanInfo);
+  titleInfoSpan.innerHTML += ` of `;
+
+  let spanInfo2 = document.createElement("span");
+  spanInfo2.classList.add("spanStrong");
+  spanInfo2.innerHTML += ` ${year}`;
+
+  titleInfoSpan.append(spanInfo2);
+  titleInfoSpan.innerHTML += ` were you born? `;
+
   // titleInfoSpan += `of ${year} were you born?`;
 
   blockBtnsInfo.append(titleInfoSpan);
@@ -202,17 +223,91 @@ function selectMonthBtns() {
       let firstLetter = eventTarget.shift().toUpperCase();
 
       let validationMonth = firstLetter + eventTarget.join("");
-      console.log(validationMonth);
+      // console.log(validationMonth);
       month = months.indexOf(validationMonth) + 1;
 
-      console.log(month);
-      // console.log(firstLetter);
+      refs.allInfoNav.innerHTML = ``;
+
+      // console.log(month);
+      let blockAllDateInfo = document.createElement("h2");
+      blockAllDateInfo.classList.add("infoDateFinished");
+      blockAllDateInfo.innerHTML = `In what day in`;
+
+      let yearInfo = document.createElement("span");
+      yearInfo.classList.add("spanStrong");
+      yearInfo.innerHTML += ` ${validationMonth} `;
+      blockAllDateInfo.append(yearInfo);
+
+      blockAllDateInfo.innerHTML += `of`;
+
+      let monthInfo = document.createElement("span");
+      monthInfo.classList.add("spanStrong");
+      monthInfo.innerHTML += ` ${year} `;
+      blockAllDateInfo.append(monthInfo);
+
+      blockAllDateInfo.innerHTML += `you born?`;
+
+      let dateInfoInput = document.createElement("input");
+      dateInfoInput.type = "date";
+      dateInfoInput.classList.add("js-date-SelectDay");
+
+      let fulldate = ``;
+      let strMonth = String(month);
+      if (strMonth.length >= 2) {
+        fulldate = `${year}-${month}-01`;
+      } else {
+        fulldate = `${year}-0${month}-01`;
+      }
+      dateInfoInput.setAttribute("value", fulldate);
+
+      let btnSelectDay = document.createElement("button");
+      btnSelectDay.classList.add("js-btn-selectDay");
+      btnSelectDay.innerHTML = `submit`;
+
+      // console.log(infoDay);
+
+      refs.allInfoNav.append(blockAllDateInfo);
+      refs.allInfoNav.append(dateInfoInput);
+      refs.allInfoNav.append(btnSelectDay);
+
+      selectDayBtn();
     });
 }
 
-// function selectDay() {
+function selectDayBtn() {
+  document
+    .querySelector(".js-btn-selectDay")
+    .addEventListener("click", (event) => {
+      let valueDate = document.querySelector(".js-date-SelectDay").value;
+      let userInfoDate = new Date(valueDate);
 
-// }
+      let currentInfoDate = date;
+
+      let diffDays = Math.ceil(diffDates(currentInfoDate, userInfoDate));
+
+      console.log(diffDays);
+
+      console.log(calculateTime(diffDays));
+
+      let { years, months, weeks, days } = calculateTime(diffDays);
+
+      let finalInfoData = document.createElement("h2");
+      finalInfoData.classList.add("titleInfoFullDate");
+      finalInfoData.innerHTML += `At the moment you lived`;
+
+      let infoDate = document.createElement("span");
+      infoDate.classList.add("spanStrong");
+      infoDate.innerHTML += ` ${years} years `;
+      infoDate.innerHTML += ` ${months} months `;
+      infoDate.innerHTML += ` ${weeks} weeks `;
+      infoDate.innerHTML += ` ${days} days `;
+
+      finalInfoData.append(infoDate);
+
+      refs.allInfoNav.innerHTML = ``;
+      refs.allInfoNav.append(finalInfoData);
+    });
+}
 
 /*Calculate Functions*/
 function calculateTime(dateInDays) {
